@@ -1,4 +1,4 @@
-name: Publish CDK
+name: Publish CDK2
 on:
   workflow_dispatch:
     inputs:
