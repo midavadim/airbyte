@@ -14,11 +14,7 @@ on:
       comment-id:
         description: 'The comment-id of the slash command. Used to update the comment with the status.'
         required: false
-
-
-        
-        
-        
+jobs:
   build-cdk-with-all-envs:
     runs-on: ubuntu-latest
     steps:
