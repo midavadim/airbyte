@@ -26,14 +26,17 @@ jobs:
           java-version: '14'
       - uses: gabrielfalcao/pyenv-action@v7
         with:
-          versions: 3.7.0, 3.7.9, 3.8.10, 3.9.5
-          commands: pyenv install --list
+          versions: 3.7.0, 3.7.9, 3.8.5
+          command: pyenv install --list
           
-      - name: Create virtualenv for python 3.5.7
+      - name: pyenv install --list
+        run: pyenv install --list
+          
+      - name: Create virtualenv for python 3.7.0
         run: pyenv local 3.7.0 && && ./gradlew --no-daemon :airbyte-cdk:python:build
       
-      - name: Create virtualenv for python 3.6.8
-        run: pyenv local 3.7.9 && ./gradlew --no-daemon :airbyte-cdk:python:build
+      #- name: Create virtualenv for python 3.6.8
+      #  run: pyenv local 3.7.9 && ./gradlew --no-daemon :airbyte-cdk:python:build
       
-      - name: Create virtualenv for python 3.7.2
-        run: pyenv local 3.8.10 && ./gradlew --no-daemon :airbyte-cdk:python:build
+      - name: Create virtualenv for python 3.8.5
+        run: pyenv local 3.8.5 && ./gradlew --no-daemon :airbyte-cdk:python:build
