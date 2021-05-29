@@ -30,7 +30,7 @@ jobs:
           default: 3.7.9
           versions: 3.7.0, 3.8.5, 3.9.0
           
-      - name: Create virtualenv for python 3.6.8
+      - name: Create virtualenv for python 3.7.9
         run: pyenv local 3.7.9 && ./gradlew --no-daemon :airbyte-cdk:python:build
           
       - name: Create virtualenv for python 3.7.0
