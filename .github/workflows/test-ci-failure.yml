@@ -17,6 +17,31 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  build-cdk-with-pyenv:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 3.7.1 - is a minimal of 3.7.X version supported by github actions
+        python-version: [3.7.0, 3.7, 3.8, 3.9]
+    steps:
+      - uses: gabrielfalcao/pyenv-action@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '14'
+      - name: Checkout Airbyte
+        uses: actions/checkout@v2
+      - name: Build CDK Package
+        run: pyenv local ${{ matrix.python-version }} && ./gradlew --no-daemon :airbyte-cdk:python:build
+      - name: Add Failure Comment
+        if: github.event.inputs.comment-id && !success()
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ github.event.inputs.comment-id }}
+          body: |
+            > :x: ${{github.event.inputs.connector}} https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+            
   # This workflow contains a single job called "build"
   JOB1:
     # The type of runner that the job will run on
