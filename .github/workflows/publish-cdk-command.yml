@@ -58,7 +58,7 @@ jobs:
       - name: Publish Python Package
         uses: mariamrf/py-package-publish-action@v1.1.0
         with:
-          python_version: '3.7.9'
+          python_version: '3.7.0'
           pip_version: '21.1'
           subdir: 'airbyte-cdk/python/'
         env:
