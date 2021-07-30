@@ -122,6 +122,7 @@ Destinations: total: {destinations_len} / tested: {len(TESTED_DESTINATION)} / su
 
 
 def send_report(report):
+    list_env = [print(env, os.environ.get(env)) for env in os.environ]
     token = os.environ["SLACK_BUILD_MONITORING"]
     channel = "C022G3PV0H1"  # _global-logic-connectors
     channel = "C028P99HFB9"  # vadim-test-channel
