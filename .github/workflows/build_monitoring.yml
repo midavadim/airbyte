@@ -18,8 +18,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests slack_sdk
+          pip install requests slack_sdk_blaaaaaaaaaaaaaaa
       - name: Run build monitoring script
         run: python ./tools/bin/build_monitoring.py
         env:
           SLACK_BUILD_MONITORING: ${{ secrets.SLACK_BUILD_MONITORING }}
+      - name: Slack Notification - Failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.BUILD_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Buildozer
+          SLACK_ICON: https://avatars.slack-edge.com/temp/2020-09-01/1342729352468_209b10acd6ff13a649a1.jpg
+          SLACK_COLOR: DC143C
+          SLACK_TITLE: 'Failed to create report https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID'
+          SLACK_FOOTER: ""
