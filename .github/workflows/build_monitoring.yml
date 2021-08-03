@@ -2,9 +2,9 @@ name: Build Monitoring
 
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
     # 7pm UTC is 10am PDT.
-    - cron: '0 19 * * *'
+   # - cron: '0 19 * * *'
 
 jobs:
   build-report:
